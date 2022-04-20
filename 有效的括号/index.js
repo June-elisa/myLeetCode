@@ -52,4 +52,4 @@ var isValid = function (s) {
 
 };
 
-console.log('isValid:', isValid('()[]{}'))
+console.log('isValid:', isValid('()[]{})')) 
