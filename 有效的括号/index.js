@@ -27,7 +27,7 @@ var isValid = function (s) {
     if (n % 2 === 1) {
         return false;
     }
-    let arr = []
+    let stack = []
     const object = {
         ')': '(',
         '}': '{',
@@ -36,19 +36,19 @@ var isValid = function (s) {
 
     for (let i = 0; i < n; i++) {
         if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
-            arr.push(s[i])
+            stack.push(s[i])
         } else {
-            if (!arr.length) {
+            if (!stack.length) {
                 return false
             }
-            if (object[s[i]] != arr.pop()) {
+            if (object[s[i]] != stack.pop()) {
                 return false
             }
         }
 
     }
 
-    return !arr.length
+    return !stack.length
 
 };
 
