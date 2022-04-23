@@ -7,38 +7,24 @@
  */
 
 
-const a = { val: 1 };
-const b = { val: 1 };
-const c = { val: 2 };
-const d = { val: 3 };
-const e = { val: 3 };
-
-a.next = b;
-b.next = c;
-
-
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
 var deleteDuplicates = function (head) {
     let p = head
+
     while (p.next) {
-        while (p.next && p.val === p.next.val) {
+        // 只有当前节点的值和下个节点的值不相同，才移动指针
+        if (p.val === p.next.val) {
             p.next = p.next.next
-        }
-        p = p.next         
+        } else {
+            p = p.next
+        }        
+        // while (p.next && p.val === p.next.val) {
+        //     p.next = p.next.next
+        // }
+        // p = p.next         
     }
     return head
 };
-
-
-let newList = deleteDuplicates(a)
-console.log('newList:', newList)
