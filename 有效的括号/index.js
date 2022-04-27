@@ -28,28 +28,27 @@ var isValid = function (s) {
         return false;
     }
     let stack = []
-    const object = {
-        ')': '(',
-        '}': '{',
-        ']': '[',
-    }
+    const map = new Map();
+    map.set('(', ')')
+    map.set('{', '}')
+    map.set('[', ']')
 
     for (let i = 0; i < n; i++) {
-        if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
-            stack.push(s[i])
+        const c = s[i]
+        if (map.has(c)) {
+            stack.push(c)
         } else {
-            if (!stack.length) {
+            const t = stack[stack.length - 1]
+            if (map.get(t) === c) {
+                stack.pop()
+            } else {
                 return false
             }
-            if (object[s[i]] != stack.pop()) {
-                return false
-            }
+
         }
 
     }
-
     return !stack.length
-
 };
 
 console.log('isValid:', isValid('()[]{})')) 
