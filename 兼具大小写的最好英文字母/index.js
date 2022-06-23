@@ -7,19 +7,15 @@
  * @return {string}
  */
 var greatestLetter = function (s) {
-     let res = ''
+     let bestAlpha = ''
      for (let i = 0; i < s.length; i++) {
          if (s[i] >= 'A' && s[i] <= 'Z') {
-            //  小写的ASCII
-             const lowerNum =  s[i].charCodeAt() + 32
-            //  小写字符
-             const lowerAlphabet = String.fromCharCode(lowerNum)
-             if (s.indexOf(lowerAlphabet) !== -1 && (!res || res < s[i])) {
-                 res = s[i]
+             if (s.match(String.fromCharCode( s[i].charCodeAt() + 32)) && (!bestAlpha || bestAlpha < s[i])) {
+                 bestAlpha = s[i]
              }
         }
      }
-    return res
+    return bestAlpha
 };
 
 const res = greatestLetter("AbCdEfGhIjK")
